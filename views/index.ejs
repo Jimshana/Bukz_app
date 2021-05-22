@@ -21,8 +21,20 @@
 							<% } -%>
 						</div>
 						<div class="description" style="text-align: justify;">
+							<span class=>Summary:
 							<p><%- book.description.substring(0,100) %> ...</p>
+						</span>
 						</div>
+
+						<div class="description" style="text-align: justify;">
+							<span class=>Review:
+							<p><%- book.review.substring(0,100) %> ...</p>
+						</span>
+						</div>
+
+						
+
+						
 						<div class="extra">
 							<a href="/books/<%= book._id %>" class="ui teal basic button">Book Review</a>
 						</div>

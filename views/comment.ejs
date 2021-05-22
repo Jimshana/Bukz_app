@@ -1,0 +1,45 @@
+<%- include("./partials/header") %>
+	<div class="ui text container segment" id="mainindexpage">
+		<div class="ui divided items">
+			<% about.forEach(function(view){%>
+                <div class="item">
+					<div class="content">
+						<div class="header">
+							<%- view.name %>
+                        </div>
+
+                        <div class="description">
+                            <span>Comment:
+							<%- view.commenter %>
+                            </span>
+                        </div>
+                            
+                            
+
+						<div class="meta">
+							<span>Rating:
+							<% for (var i = 0; i < view.rating; i++) { -%>
+								<i class="yellow star icon" style="display: inline"></i>
+							<% } -%>
+							
+							</span><% for (var i = 0; i < 5 - view.rating; i++) { -%>
+								<i class="yellow star outline icon" style="display: inline"></i>
+							<% } -%>
+						</div>
+
+                       
+							
+                            <form id = "delete" method = "POST" action = "/about/<%= view._id%>?_method=DELETE" style = "display: inline;">
+                                <button class="ui red basic button">Delete</button>
+                            </form>
+						
+                            
+					</div>
+				</div>
+                
+
+                
+			<%});%>
+		</div>
+	</div>
+<%- include("./partials/footer") %>

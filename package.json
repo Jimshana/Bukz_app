@@ -16,8 +16,11 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-sanitizer": "^1.0.6",
+    "express-session": "^1.17.2",
     "method-override": "^3.0.0",
-    "mongoose": "^5.12.9"
+    "mongoose": "^5.12.9",
+    "passport": "^0.4.1",
+    "passport-local-mongoose": "^6.1.0"
   },
   "devDependencies": {
     "dotenv": "^9.0.2",
