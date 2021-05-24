@@ -1,11 +1,14 @@
 <%- include("./partials/header") %>
+
+<div style="background: url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80)" class="page-holder bg-cover">
+
 	<div class="ui text container segment" id="mainindexpage">
 		<div class="ui divided items">
-			<% about.forEach(function(view){%>
+			<% about.forEach(function(view,book){%>
                 <div class="item">
 					<div class="content">
 						<div class="header">
-							<%- view.name %>
+							<a href="/books/<%=book._id%>"><%- view.name %></a>
                         </div>
 
                         <div class="description">

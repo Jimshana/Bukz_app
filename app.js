@@ -12,7 +12,10 @@ const User = require("./models/user.model");
 
 
 // App Configs
-mongoose.connect("mongodb://localhost/Bukz_app");
+mongoose.connect("mongodb://localhost/Bukz_app",{
+    useNewUrlParser:true,
+	useUnifiedTopology: true
+})
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -80,7 +83,7 @@ app.use("/", userRoute);
 
 app.get("/",function(req,res){
 	res.redirect("/books");
-});
+})
 
 
 
@@ -88,15 +91,43 @@ app.get("/",function(req,res){
 
 
 
-app.get("/books",function(req,res){
-	Book.find({},function(err,books){
-		if(err){
-			console.log("Error!");
-		} else {
-			res.render("index",{books:books});
+app.get("/books",async (req,res)=>{
+
+	let books = [];
+	
+		if(req.query.search !==null && req.query.search !==""){
+			const reg=new RegExp(req.query.search,"i");
+			console.log(req.query.category);
+			
+			if(req.query.category  && req.query.category !=="All"){
+
+			books= await Book.find({[req.query.category.toLowerCase()]:reg});
+		}else{
+			books=await Book.find({
+
+			
+				$or:[
+					{ title:reg },
+					{ genre:reg },
+					{ author:reg },
+					{ language:reg }
+				],
+			});
 		}
+		let user=req.session.user;
+		res.render("index",{
+			books:books,
+			user:user,
+			searchOptions:req.query,
+
+		});
+	}else{
+		res.redirect("/books");
+	}
 	});
-});
+	
+
+
 
 
 app.get("/about",function(req,res){
@@ -108,7 +139,9 @@ app.get("/about",function(req,res){
 		}
 	});
 });
-
+app.get("/search",function(req,res){
+	res.render("search");
+});
 
 app.get("/books/new",function(req,res){
 	res.render("new");
