@@ -1,7 +1,28 @@
 .container.newbook{
-	margin-top: 7em;
+	margin-top: 2em;
+
 }
 
 #mainindexpage{
-	margin-top: 5em;
+	margin-top: 2em;
+	background-image: url("https://cdn.hipwallpaper.com/i/51/66/j49Iyq.jpg");
+	
+
 }
+
+.btn-primary.custom-btn {
+	background-color: #000;
+	border-color: #000;
+}
+
+.page-holder {
+	min-height: 100vh;
+  }
+  
+  .bg-cover {
+	background-size: cover !important;
+	
+  }
+
+
+
