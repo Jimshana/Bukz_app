@@ -1,0 +1,46 @@
+<%- include("./partials/header") %>
+
+<div style="background: url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80)" class="page-holder bg-cover">
+
+	<div class="ui text container segment" id="mainindexpage">
+		<div class="ui divided items">
+			<% about.forEach(function(view,book){%>
+                <div class="item">
+					<div class="content">
+						<div class="header">
+							<a href="/books/<%=book._id%>"><%- view.name %></a>
+                        </div>
+
+                        <div class="description">
+                            <span>Comment:
+							<%- view.commenter %>
+                            </span>
+                        </div>
+                            
+                            
+
+						<div class="meta">
+							<span>Rating:
+							<% for (var i = 0; i < view.rating; i++) { -%>
+								<i class="yellow star icon" style="display: inline"></i>
+							<% } -%>
+							
+							</span><% for (var i = 0; i < 5 - view.rating; i++) { -%>
+								<i class="yellow star outline icon" style="display: inline"></i>
+							<% } -%>
+						</div>
+
+						
+						
+						
+						
+                            
+					</div>
+				</div>
+                
+
+                
+			<%});%>
+		</div>
+	</div>
+<%- include("./partials/footer") %>

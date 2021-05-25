@@ -1,0 +1,97 @@
+
+
+<%- include("./partials/header") %>
+<div style="background: url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80)" class="page-holder bg-cover">
+
+<div class="ui text container segment" id="mainindexpage">
+	
+	
+	
+
+	<div class="ui divided items">
+		
+		
+
+<form action="/books" method="=GET" class="d-flex" style="justify-content:center;position: relative">
+
+	
+	<select name="category" id="category"  style="width: 200px" class="form-control mr-sm-2">
+		<option selected>All</option>
+	  <option value="author">Author</option>
+	  <option value="language">Language</option>
+	  <option value="genre">Genre</option>
+	  
+	</select>
+	<input name="search" class="form-control mr-sm-2"  autocomplete="off"   type="text" placeholder="Search">
+	
+	
+		
+
+	
+		
+	
+	 
+	
+    <button class="btn btn-dark custom-btn"  type="submit">Search</button>
+
+	
+	
+  </form>
+  </div>
+  </div>
+  
+
+
+	<div class="ui text container segment" id="mainindexpage">
+		
+	
+		<div class="ui divided items">
+
+	
+			
+			<% books.forEach(function(book){%>
+				<div class="item">
+					
+					<div class="image">
+						<img src="<%= book.image %>">
+					</div>
+					<div class="content">
+						<div class="header">
+							<a href="/books/<%=book._id%>"><%- book.title %></a>
+						</div>
+						<div class="meta">
+							<span>Rating:
+							<% for (var i = 0; i < book.rating; i++) { -%>
+								<i class="yellow star icon" style="display: inline"></i>
+							<% } -%>
+							
+							</span><% for (var i = 0; i < 5 - book.rating; i++) { -%>
+								<i class="yellow star outline icon" style="display: inline"></i>
+							<% } -%>
+						</div>
+						<div class="description" style="text-align: justify;">
+							<span class=>Summary:
+							<p><%- book.description.substring(0,100) %> ...</p>
+						</span>
+						</div>
+
+						<div class="description" style="text-align: justify;">
+							<span class=>Review:
+							<p><%- book.review.substring(0,100) %> ...</p>
+						</span>
+						</div>
+
+						
+
+						
+						<div class="extra">
+							<a href="/books/<%= book._id %>" class="ui blue basic button">Book Review</a>
+						</div>
+					</div>
+				</div>
+			<%});%>
+		</div>
+	</div>
+	</div>
+	
+<%- include("./partials/footer") %>
