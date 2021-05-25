@@ -30,7 +30,7 @@ app.use(expressSanitizer());
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-	secret:"key",
+	secret:"thisisasecret",
     resave: false,
     saveUninitialized: false,
     cookie: {
