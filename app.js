@@ -5,7 +5,9 @@ const session = require("express-session");
 const passport = require("passport");
 var expressSanitizer = require("express-sanitizer");
 var methodOverride = require("method-override");
-var app = express();
+const app = express();
+require("dotenv").config();
+
 
 
 const userRoute = require("./routes/user.route");
@@ -25,8 +27,10 @@ app.use(expressSanitizer());
 
 
 
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
+	secret:"key",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -237,5 +241,6 @@ app.delete("/books/:id",checkAuthenticated,(req,res)=>{
 
 var port = process.env.PORT || 3000;
 app.listen(port,process.env.IP,function(){
+	
 	console.log("The Book Review App server has started")
 })
