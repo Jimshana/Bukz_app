@@ -15,7 +15,7 @@ const User = require("./models/user.model");
 
 
 // App Configs
-mongoose.connect("mongodb://localhost/Bukz_app",{
+mongoose.connect(process.env.DATABASE_URL,{
     useNewUrlParser:true,
 	useUnifiedTopology: true
 })
