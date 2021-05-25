@@ -240,7 +240,8 @@ app.delete("/books/:id",checkAuthenticated,(req,res)=>{
 
 
 var port = process.env.PORT || 3000;
-app.listen(port,process.env.IP,function(){
+app.listen(port,process.env,function(){
+	
 	
 	console.log("The Book Review App server has started")
 })
