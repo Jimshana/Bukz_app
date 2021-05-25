@@ -1,6 +1,6 @@
 <div style="background: url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80)" class="page-holder bg-cover">
 <%- include("./partials/header.ejs") %>
-
+<% if(locals.errorMessage != null){ %> <%= errorMessage %> <% } %>
 
 <div class="ui  newbook text container segment" id="mainindexpage">
 
@@ -47,7 +47,7 @@
 
 			<div class="field">
 				<label>Link to purchase</label>
-				<input type="url"  autocomplete="off"  name="book[link]" required>
+				<input type="url"  autocomplete="off"  name="book[link]"  placeholder="Link" required>
 				
 			</div>
 

@@ -7,6 +7,7 @@ var expressSanitizer = require("express-sanitizer");
 var methodOverride = require("method-override");
 var app = express();
 
+
 const userRoute = require("./routes/user.route");
 const User = require("./models/user.model");
 
@@ -77,35 +78,41 @@ var View = mongoose.model("View",viewSchema);
 
 
 
+function checkAuthenticated(req,res,next){
+	let user = req.session.user;
+    if(req.isAuthenticated()){
+        return next()
+    }
+    res.redirect("/login")
+    }
+
+
 
 app.use("/", userRoute);
 
 
+
 app.get("/",function(req,res){
 	res.redirect("/books");
-})
+});
 
 
 
 
+app.get("/books/new",checkAuthenticated,(req,res)=>{	
+	res.render("new");		
+});
 
 
-
-app.get("/books",async (req,res)=>{
-
+app.get("/books",checkAuthenticated,async (req,res)=>{
 	let books = [];
-	
 		if(req.query.search !==null && req.query.search !==""){
 			const reg=new RegExp(req.query.search,"i");
-			console.log(req.query.category);
-			
+			console.log(req.query.category);			
 			if(req.query.category  && req.query.category !=="All"){
-
 			books= await Book.find({[req.query.category.toLowerCase()]:reg});
 		}else{
-			books=await Book.find({
-
-			
+			books=await Book.find({		
 				$or:[
 					{ title:reg },
 					{ genre:reg },
@@ -130,7 +137,7 @@ app.get("/books",async (req,res)=>{
 
 
 
-app.get("/about",function(req,res){
+app.get("/about",checkAuthenticated,(req,res)=>{
 	View.find({},function(err,about){
 		if(err){
 			console.log("Error!");
@@ -139,15 +146,12 @@ app.get("/about",function(req,res){
 		}
 	});
 });
+
+
+
 app.get("/search",function(req,res){
 	res.render("search");
 });
-
-app.get("/books/new",function(req,res){
-	res.render("new");
-});
-
-
 
 
 app.post("/books",function(req,res){
@@ -163,7 +167,9 @@ app.post("/books",function(req,res){
 	});
 });
 
-app.get("/books/:id",function(req,res){
+
+
+app.get("/books/:id",checkAuthenticated,(req,res)=>{
 	Book.findById(req.params.id,function(err,book){
 		if(err){
 			res.redirect("/books");
@@ -172,6 +178,8 @@ app.get("/books/:id",function(req,res){
 		}
 	});
 });
+
+
 
 app.get("/books/:id/edit",function(req,res){
 	Book.findById(req.params.id,function(err,book){
@@ -197,6 +205,8 @@ app.post("/about",function(req,res){
 	});
 });
 
+
+
 app.put("/books/:id",function(req,res){
 	req.body.book.title = req.sanitize(req.body.book.title);
 	req.body.book.description = req.sanitize(req.body.book.description);
@@ -211,26 +221,20 @@ app.put("/books/:id",function(req,res){
 });
 
 
-
-app.delete("/books/:id",function(req,res){
+app.delete("/books/:id",checkAuthenticated,(req,res)=>{
 	Book.findByIdAndRemove(req.params.id,function(err){
-		if(err){
-			res.redirect("/books");
-		} else {
-			res.redirect("/books");
-		}
+		const user = req.session.user
+		if(!user){ return res.redirect('/books')}
 	});
 });
 
-app.delete("/about/:id",function(req,res){
-	View.findByIdAndRemove(req.params.id,function(err){
-		if(err){
-			res.redirect("/about");
-		} else {
-			res.redirect("/about");
-		}
-	});
-});
+
+
+
+
+
+
+
 var port = process.env.PORT || 3000;
 app.listen(port,process.env.IP,function(){
 	console.log("The Book Review App server has started")

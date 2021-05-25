@@ -26,6 +26,7 @@ router.get("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.logout();
+    req.session.destroy()
     res.redirect("/login")
 });
 
@@ -63,10 +64,16 @@ router.post("/login", (req, res) => {
         } else {
             passport.authenticate("local")(req, res, () => {
                 res.redirect("/books");
+               
+                
             });
         }
     });
 });
+
+
+
+
 
 // Exporting User router
 module.exports = router;
