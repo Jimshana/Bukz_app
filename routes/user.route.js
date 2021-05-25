@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require("passport");
-require("dotenv").config();
+// require("dotenv").config();
 
 // importing User Model 
 const User = require('../models/user.model');
