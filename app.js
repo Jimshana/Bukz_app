@@ -6,7 +6,7 @@ const passport = require("passport");
 var expressSanitizer = require("express-sanitizer");
 var methodOverride = require("method-override");
 const app = express();
-require("dotenv").config();
+// require("dotenv").config();
 
 
 
