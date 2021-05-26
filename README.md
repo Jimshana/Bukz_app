@@ -3,7 +3,7 @@
 Bukz_app 
 Bukz_app is a completely free book review .It's a well-designed outlet for book lovers to share their likes and dislikes
 ## Team members
-1. Name [Embed personal github URL]
+1. Jimshana[Jimshana]
 2. Salmanulfaris[salmanulfaris114]
 3. Mahanas[NihalNibu]
 ## Team Id
