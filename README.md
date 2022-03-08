@@ -24,9 +24,7 @@ https://www.loom.com/share/a22b27352a104098991815d33840a690
  "mongoose": "^5.12.9",
  "passport": "^0.4.1",
   "passport-local-mongoose": "^6.1.0"
-## How to configure
-Link to website:
-https://bukzapp.herokuapp.com
+
 ## How to Run
 clone from git :git clone https://github.com/Jimshana/Bukz_app.git
 install node modules(npm install)
