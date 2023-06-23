@@ -1,6 +1,6 @@
 ![BFH Banner](https://trello-attachments.s3.amazonaws.com/542e9c6316504d5797afbfb9/542e9c6316504d5797afbfc1/39dee8d993841943b5723510ce663233/Frame_19.png)
 # Project Name
-Bukz_app 
+Bukz_app.
 Bukz_app is a completely free book review .It's a well-designed outlet for book lovers to share their likes and dislikes
 ## Team members
 1. Jimshana[Jimshana]
